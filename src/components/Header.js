@@ -5,15 +5,15 @@ import {
   MagnifyingGlassIcon,
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
-import {signIn,signOut,useSession} from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
 
 function Header() {
-  const {data: session} = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
-  const items = useSelector(selectItems)
+  const items = useSelector(selectItems);
 
   return (
     <header>
@@ -21,7 +21,7 @@ function Header() {
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
         <div className="mt-2 px-2 flex items-center flex-grow sm:flex-grow-0">
           <Image
-            onClick={()=> router.push('/')}
+            onClick={() => router.push("/")}
             src="https://links.papareact.com/f90"
             alt="Logo"
             width={120}
@@ -40,9 +40,9 @@ function Header() {
         </div>
         {/* Right */}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-          <div onClick={!session? signIn : signOut} className="link">
+          <div onClick={!session ? signIn : signOut} className="link">
             <p className="hover:underline">
-              {session?`Hello, ${session.user.name}`:`Sign In`}
+              {session ? `Hello, ${session.user.name}` : `Sign In`}
             </p>
             <p className="font-extrabold md:text-sm">Account & Lists</p>
           </div>
@@ -50,7 +50,10 @@ function Header() {
             <p>Returns</p>
             <p className="font-extrabold md:text-sm">& Orders</p>
           </div>
-          <div onClick={()=> router.push('/checkout')} className="relative link flex items-center">
+          <div
+            onClick={() => router.push("/checkout")}
+            className="relative link flex items-center"
+          >
             <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold">
               {items.length}
             </span>
@@ -75,7 +78,7 @@ function Header() {
         <p className="link hidden lg:inline-flex">Prime</p>
         <p className="link hidden lg:inline-flex">Buy Again</p>
         <p className="link hidden lg:inline-flex">Shopper Toolkit</p>
-        <p className="link hidden lg:inline-flex">Health & Presonal Care</p>
+        <p className="link hidden lg:inline-flex">Health & Personal Care</p>
         <p className="link hidden lg:inline-flex">Amazon Basics</p>
         <p className="link hidden lg:inline-flex">Coupon</p>
       </div>
